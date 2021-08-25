@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+
+        <menuitem name="School" id="climbing_gym_school.menu_school" parent="climbing_gym.menu_root"/>
+            <menuitem name="Course" id="climbing_gym_school.course" parent="climbing_gym_school.menu_school"
+                      action="climbing_gym_school.course_list_action"
+                      sequence="1"/>
+
+
+
+
+        <menuitem name="School" id="climbing_gym_school.school_config" parent="climbing_gym.menu_3"/>
+        <menuitem name="Course type" id="climbing_gym_school.course_type"
+                  parent="climbing_gym_school.school_config"
+                  action="climbing_gym_school.course_type_list_action"/>
+        <menuitem name="Career" id="climbing_gym_school.career"
+                  parent="climbing_gym_school.school_config"
+                  action="climbing_gym_school.career_list_action"/>
+
+
+    </data>
+</odoo>

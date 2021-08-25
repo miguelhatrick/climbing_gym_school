@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="climbing_gym_school.course_list_action">
+            <field name="name">Courses</field>
+            <field name="res_model">climbing_gym_school.course</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="climbing_gym_school.course_list_view">
+            <field name="name">Course list</field>
+            <field name="model">climbing_gym_school.course</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name='description'/>
+                    <field name="course_date"/>
+                    <field name="organizer_id"/>
+                    <!--          <field name="description"/>-->
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="course_form_view">
+            <field name="name">course.form</field>
+            <field name="model">climbing_gym_school.course</field>
+            <field name="arch" type="xml">
+                <form string="Event Time Range">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="pending,active,closed,cancel"/>
+                        <button name="action_cancel" string="Cancel" states='active' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_active" string="Activate" states='pending' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_close" string="Close" states='active' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_revive" string="Revive" states='closed,cancel' type="object"
+                                class="oe_highlight"/>
+
+
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <notebook>
+                            <page string="Data">
+                                <group col="2" colspan="2" string="">
+                                    <field name='name'/>
+                                    <field name='description'/>
+                                    <field name='obs'/>
+                                </group>
+                                <group col="2" colspan="2" string="Configuration">
+                                    <field name='course_date'/>
+                                    <field name='organizer_id'/>
+                                    <field name='course_type_id'
+                                           options="{'no_quick_create':True,'no_create_edit':True}"
+                                           domain="[('state','in',['active'])]"
+
+
+                                    />
+                                    <field name='career_id'/>
+                                </group>
+                                <group col="4" colspan="2" string="Students">
+                                    <field name='course_students_ids' widget="one2many_list" nolabel="1">
+
+                                        <tree string="Variants" editable="bottom">
+                                            <field name="name" />
+                                            <field name="student_id" />
+                                            <field name="state" />
+                                        </tree>
+                                    </field>
+                                </group>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- server action to the one above -->
+
+        <record model="ir.actions.server" id="climbing_gym_school.action_server">
+            <field name="name">climbing_gym server</field>
+            <field name="model_id" ref="model_climbing_gym_school_course"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": self._name,
+                }
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

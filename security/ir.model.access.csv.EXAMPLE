@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+superadmin_REPLACE,climbing_gym_school.REPLACE,model_climbing_gym_school_REPLACE,climbing_gym.group_superadmin,1,1,1,1
+manager_REPLACE,climbing_gym_school.REPLACE,model_climbing_gym_school_REPLACE,climbing_gym.group_manager,1,1,1,0
+user_REPLACE,climbing_gym_school.REPLACE,model_climbing_gym_school_REPLACE,climbing_gym.group_user,1,1,1,0
+global_user_REPLACE,climbing_gym_school.REPLACE,model_climbing_gym_school_REPLACE,base.group_portal,1,0,0,0

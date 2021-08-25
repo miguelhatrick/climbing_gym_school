@@ -1,0 +1,15 @@
+<odoo>
+    <data noupdate="1">
+        <!--Member Access Package cron jobs-->
+        <record id="worker_access_package_create" model="ir.cron">
+            <field name="name">Create worker MAPS</field>
+            <field name="model_id" ref="model_climbing_gym_worker_access_package"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.cron_create_worker_maps()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>
