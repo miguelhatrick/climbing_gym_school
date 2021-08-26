@@ -1,13 +1,27 @@
 <odoo>
     <data>
+        <template id="portal_my_home_menu_course" name="Portal layout : course menu entries"
+                  inherit_id="portal.portal_breadcrumbs" priority="30">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+                <li t-if="page_name == 'course'" t-attf-class="breadcrumb-item #{'active ' if not invoice else ''}">
+                    <a t-if="course" t-attf-href="/my/courses?{{ keep_query() }}">Courses</a>
+                    <t t-else="">Course</t>
+                </li>
+                <li t-if="course" class="breadcrumb-item active">
+                    <t t-esc="course.name"/>
+
+                </li>
+            </xpath>
+        </template>
+
+
         <template id="portal_my_courses" name="My courses">
             <t t-call="portal.portal_layout">
                 <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
                 <t t-call="portal.portal_searchbar">
-                    <t t-set="title">Courses</t>
+                    <t t-set="title">Invoices</t>
                 </t>
-
 
                 <t t-if="not courses">
                     <p>There are currently no courses.</p>
@@ -19,8 +33,8 @@
                             <th class="text-right">Course date</th>
                             <th class="text-right">Description</th>
                             <th class="text-right">Type</th>
-                            <th class="text-right">Status</th>
                             <th class="text-right">Register</th>
+                            <th class="text-right">Status</th>
                         </tr>
                     </thead>
                     <t t-foreach="courses" t-as="course">
@@ -38,60 +52,69 @@
                                 <span t-field="course.course_type_id"/>
                             </td>
 
+                            <td class="text-right">
+                                <t t-set="registration" t-value="course.is_student_registered(partner)"/>
+
+                                <t t-if="registration is not None and registration.state == 'pending'">
+                                    <form id="course_create" t-attf-action="/my/courses/unregister" method="post"
+                                          class="js_website_submit_form">
+                                        <div class="float-right">
+                                            <button type="submit" class="btn btn-warning">Cancel registration</button>
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" name="course_id" t-att-value="course.id"/>
+                                        </div>
+                                    </form>
+                                </t>
+                                <t t-if="registration is None or registration.state == 'cancel' ">
+                                    <form id="course_create" t-attf-action="/my/courses/register" method="post"
+                                          class="js_website_submit_form">
+                                        <div class="float-right">
+                                            <button type="submit" class="btn btn-primary">Register</button>
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" name="course_id" t-att-value="course.id"/>
+                                        </div>
+                                    </form>
+                                </t>
+
+                            </td>
+
                             <td class="text-center">
-                                <t t-if="course.state == 'cancel'">
+                                <t t-if="registration is not None and registration.state == 'rejected'">
                                     <span class="badge badge-pill badge-danger">
                                         <i class="fa fa-fw fa-times" aria-label="Paid" title="Cancelled" role="img"></i>
                                         <span class="d-none d-md-inline">
-                                            <span t-field="course.state"/>
+                                            <span t-field="registration.state"/>
                                         </span>
                                     </span>
                                 </t>
 
 
-
-                                <t t-if="course.state == 'closed'">
+                                <t t-if="registration is not None and registration.state == 'pending'">
                                     <span class="badge badge-pill badge-warning">
                                         <i class="fa fa-fw fa-times" aria-label="Paid" title="Closed" role="img"></i>
                                         <span class="d-none d-md-inline">
-                                            <span t-field="course.state"/>
+                                            <span t-field="registration.state"/>
                                         </span>
                                     </span>
                                 </t>
 
-                                <t t-if="course.state == 'active'">
+
+                                <t t-if="registration is not None and registration.state == 'accepted'">
                                     <span class="badge badge-pill badge-success">
                                         <i class="fa fa-fw fa-check" aria-label="Paid" title="Active" role="img"></i>
                                         <span class="d-none d-md-inline">
-                                            <span t-field="course.state"/>
+                                            <span t-field="registration.state"/>
                                         </span>
                                     </span>
                                 </t>
                             </td>
 
-                            <td class="text-right">
-                                <t t-foreach="course.course_students_ids.filtered(lambda r: r.id == partner.id)" t-as="student">
-                                    <span t-field="student.name"/>
-                                </t>
-
-                                If allready registered show that
-                                <form id="course_create" t-attf-action="/my/courses/register" method="post"
-                                      class="js_website_submit_form">
-                                    <div class="float-right">
-                                        <button type="submit" class="btn btn-primary">Register</button>
-                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                        <input type="hidden" name="course_id" t-att-value="course.id"/>
-                                    </div>
-                                </form>
-
-                            </td>
 
                         </tr>
                     </t>
                 </t>
             </t>
         </template>
-
 
 
     </data>

@@ -72,7 +72,7 @@
 
                                         <tree string="Variants" editable="bottom">
                                             <field name="name" />
-                                            <field name="student_id" />
+                                            <field name="partner_id" />
                                             <field name="state" />
                                         </tree>
                                     </field>

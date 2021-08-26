@@ -76,7 +76,7 @@ class CustomerPortalSchool(CustomerPortal):
             'date': date_begin,
             'courses': courses.sudo(),
             'partner': partner,
-            'page_name': 'Courses',
+            'page_name': 'course',
             'pager': pager,
             'archive_groups': archive_groups,
             'default_url': '/my/courses',
@@ -86,7 +86,7 @@ class CustomerPortalSchool(CustomerPortal):
         return request.render("climbing_gym_school.portal_my_courses", values)
 
     @http.route(['/my/courses/register'], type='http', auth="user", website=True)
-    def portal_my_medical_certificate_form(self, **kwargs):
+    def portal_course_register(self, **kwargs):
         values = self._prepare_portal_layout_values()
         partner = request.env.user.partner_id
 
@@ -94,62 +94,35 @@ class CustomerPortalSchool(CustomerPortal):
         _course_student = request.env['climbing_gym_school.course_student']
 
         course = _course.search([('id', '=', kwargs['course_id'])])
-        # ,('res_id', '=', _mc.id)]
 
         # If not registered register
+        _registration = course.is_student_registered(partner)
 
-        _mc = _course_student.sudo().create({
-            'student_id': partner.id,
-            'course_id': course.id,
-            'state': 'pending'
+        if _registration is None:
+            _mc = _course_student.sudo().create({
+                'partner_id': partner.id,
+                'course_id': course.id,
+                'state': 'pending'
             })
+        else:
+            if _registration.state == 'cancel':
+                _registration.action_revive()
 
         return self.portal_my_courses()
 
-
-class CustomerPortalForm(WebsiteForm):
-    @http.route('/website_form/shop.climbing_gym.medical_certificate', type='http', auth="public", methods=['POST'],
-                website=True)
-    def website_form_medical_certificate(self, **kwargs):
+    @http.route(['/my/courses/unregister'], type='http', auth="user", website=True)
+    def portal_course_unregister(self, **kwargs):
+        values = self._prepare_portal_layout_values()
         partner = request.env.user.partner_id
-        model_record = request.env.ref('climbing_gym.model_climbing_gym_medical_certificate')
 
-        # date
-        issue_date = datetime.datetime.strptime(kwargs['issue_date'], "%Y-%m-%d").date()
-        kwargs['issue_date'] = issue_date.strftime("%d/%m/%Y")
+        _course = request.env['climbing_gym_school.course']
+        _course_student = request.env['climbing_gym_school.course_student']
 
-        try:
-            data = self.extract_data(model_record, kwargs)
-        except ValidationError as e:
-            return json.dumps({'error_fields': e.args[0]})
+        course = _course.search([('id', '=', kwargs['course_id'])])
 
-        _medicalCertificate = request.env['climbing_gym.medical_certificate']
+        # If not registered register
+        _registration = course.is_student_registered(partner)
+        if _registration:
+            _registration.action_cancel()
 
-        _mc = _medicalCertificate.sudo().create({
-            'partner_id': partner.id,
-            'issue_date': issue_date,
-            'doctor_name': kwargs['doctor_name'],
-            'doctor_license': kwargs['doctor_license']
-        }
-        )
-
-        if data['custom']:
-            values = {
-                'body': nl2br(data['custom']),
-                'model': 'climbing_gym.medical_certificate',
-                'message_type': 'comment',
-                'no_auto_thread': False,
-                'res_id': _mc.id,
-            }
-            request.env['mail.message'].sudo().create(values)
-
-        if data['attachments']:
-            _id = self.insert_attachment(model_record, _mc.id, data['attachments'])
-
-        _at_ids = request.env['ir.attachment'].sudo().search([('res_model', '=', 'climbing_gym.medical_certificate'),
-                                                              ('res_id', '=', _mc.id)])
-
-        for _id in _at_ids:
-            _mc.attachment_ids = [(4, _id.id)]
-
-        return json.dumps({'id': _mc.id})
+        return self.portal_my_courses()

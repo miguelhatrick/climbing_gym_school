@@ -27,12 +27,13 @@
 
             'views/career.xml',
             'views/course.xml',
-
+            'views/course_student.xml',
             'views/course_type.xml',
             'views/menu.xml',
 
             'views/portal/portal_my_documents.xml',
             'views/portal/portal_course.xml'
+
 
     ],
     # only loaded in demonstration mode

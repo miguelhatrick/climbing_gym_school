@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="climbing_gym_school.course_student_list_action">
+            <field name="name">Course students</field>
+            <field name="res_model">climbing_gym_school.course_student</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="climbing_gym_school.course_student_student_list_view">
+            <field name="name">Course student list</field>
+            <field name="model">climbing_gym_school.course_student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name='partner_id'/>
+                    <field name="course_id"/>
+
+                    <field name="create_date"/>
+
+                    <field name="write_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="course_student_form_view">
+            <field name="name">course_student.form</field>
+            <field name="model">climbing_gym_school.course_student</field>
+            <field name="arch" type="xml">
+                <form string="Event Time Range">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="pending,active,closed,cancel"/>
+                        <button name="action_accept" string="Accept" states='pending' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_reject" string="Reject" states='pending' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_revive" string="Revive" states='accepted,rejected' type="object"
+                                class="oe_highlight"/>
+
+
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <notebook>
+                            <page string="Data">
+                                <group col="2" colspan="2" string="">
+                                    <field name='partner_id'/>
+                                    <field name='course_id'
+                                           domain="[('state','in',['pending', 'active', 'closed'])]"
+                                    />
+                                    <field name='obs'/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- server action to the one above -->
+
+        <record model="ir.actions.server" id="climbing_gym_school.action_server">
+            <field name="name">climbing_gym server</field>
+            <field name="model_id" ref="model_climbing_gym_school_course_student"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": self._name,
+                }
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

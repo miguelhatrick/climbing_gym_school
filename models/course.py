@@ -32,11 +32,10 @@ class Course(models.Model):
                                 track_visibility=True)
 
     course_type_id = fields.Many2one('climbing_gym_school.course_type', string='Course type', required=True, index=True,
-                                track_visibility=True)
+                                     track_visibility=True)
 
     course_students_ids = fields.One2many('climbing_gym_school.course_student', inverse_name='course_id',
-                                            string='Students', readonly=True)
-
+                                          string='Students', readonly=True)
 
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
@@ -64,3 +63,15 @@ class Course(models.Model):
         # pdb.set_trace()
         for _map in self:
             _map.name = "COURSE-%s" % (_map.id if _map.id else '')
+
+    def is_student_registered(self, partner_id):
+        """
+        Control if a partner is registered in the course
+        :param partner_id: res.partner
+        :return: course_student
+        """
+        register = [d for d in self.course_students_ids if d.partner_id == partner_id]
+
+        if len(register) == 1:
+            return register[0]
+        return None

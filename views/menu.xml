@@ -5,6 +5,9 @@
             <menuitem name="Course" id="climbing_gym_school.course" parent="climbing_gym_school.menu_school"
                       action="climbing_gym_school.course_list_action"
                       sequence="1"/>
+            <menuitem name="Course student" id="climbing_gym_school.course_student" parent="climbing_gym_school.menu_school"
+                      action="climbing_gym_school.course_student_list_action"
+                      sequence="2"/>
 
 
 
