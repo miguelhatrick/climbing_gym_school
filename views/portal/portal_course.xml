@@ -43,7 +43,12 @@
                                 <span t-field="course.name"/>
                             </td>
                             <td class="text-right">
-                                <span t-field="course.course_date"/>
+                                <t t-if="course.state == 'active'">
+                                    <span t-field="course.course_date"/>
+                                </t>
+                                <t t-else="">
+                                    Not set
+                                </t>
                             </td>
                             <td class="text-right">
                                 <span t-field="course.description"/>
@@ -54,28 +59,34 @@
 
                             <td class="text-right">
                                 <t t-set="registration" t-value="course.is_student_registered(partner)"/>
-
-                                <t t-if="registration is not None and registration.state == 'pending'">
-                                    <form id="course_create" t-attf-action="/my/courses/unregister" method="post"
-                                          class="js_website_submit_form">
-                                        <div class="float-right">
-                                            <button type="submit" class="btn btn-warning">Cancel registration</button>
-                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                            <input type="hidden" name="course_id" t-att-value="course.id"/>
-                                        </div>
-                                    </form>
+                                <t t-if="course.state == 'close'">
+                                    Registration closed
                                 </t>
-                                <t t-if="registration is None or registration.state == 'cancel' ">
-                                    <form id="course_create" t-attf-action="/my/courses/register" method="post"
-                                          class="js_website_submit_form">
-                                        <div class="float-right">
-                                            <button type="submit" class="btn btn-primary">Register</button>
-                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                            <input type="hidden" name="course_id" t-att-value="course.id"/>
-                                        </div>
-                                    </form>
+                                <t t-if="course.state == 'active'">
+                                    <t t-if="registration is not None and registration.state == 'pending'">
+                                        <form id="course_create" t-attf-action="/my/courses/unregister" method="post"
+                                              class="js_website_submit_form">
+                                            <div class="float-right">
+                                                <button type="submit" class="btn btn-warning">Cancel registration
+                                                </button>
+                                                <input type="hidden" name="csrf_token"
+                                                       t-att-value="request.csrf_token()"/>
+                                                <input type="hidden" name="course_id" t-att-value="course.id"/>
+                                            </div>
+                                        </form>
+                                    </t>
+                                    <t t-if="registration is None or registration.state == 'cancel' ">
+                                        <form id="course_create" t-attf-action="/my/courses/register" method="post"
+                                              class="js_website_submit_form">
+                                            <div class="float-right">
+                                                <button type="submit" class="btn btn-primary">Register</button>
+                                                <input type="hidden" name="csrf_token"
+                                                       t-att-value="request.csrf_token()"/>
+                                                <input type="hidden" name="course_id" t-att-value="course.id"/>
+                                            </div>
+                                        </form>
+                                    </t>
                                 </t>
-
                             </td>
 
                             <td class="text-center">
@@ -87,9 +98,7 @@
                                         </span>
                                     </span>
                                 </t>
-
-
-                                <t t-if="registration is not None and registration.state == 'pending'">
+                                <t t-else="registration is not None and registration.state == 'pending'">
                                     <span class="badge badge-pill badge-warning">
                                         <i class="fa fa-fw fa-times" aria-label="Paid" title="Closed" role="img"></i>
                                         <span class="d-none d-md-inline">
@@ -97,9 +106,7 @@
                                         </span>
                                     </span>
                                 </t>
-
-
-                                <t t-if="registration is not None and registration.state == 'accepted'">
+                                <t t-else="registration is not None and registration.state == 'accepted'">
                                     <span class="badge badge-pill badge-success">
                                         <i class="fa fa-fw fa-check" aria-label="Paid" title="Active" role="img"></i>
                                         <span class="d-none d-md-inline">

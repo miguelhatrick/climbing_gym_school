@@ -95,18 +95,19 @@ class CustomerPortalSchool(CustomerPortal):
 
         course = _course.search([('id', '=', kwargs['course_id'])])
 
-        # If not registered register
-        _registration = course.is_student_registered(partner)
+        if course.state == 'active':
+            # If not registered register
+            _registration = course.is_student_registered(partner)
 
-        if _registration is None:
-            _mc = _course_student.sudo().create({
-                'partner_id': partner.id,
-                'course_id': course.id,
-                'state': 'pending'
-            })
-        else:
-            if _registration.state == 'cancel':
-                _registration.action_revive()
+            if _registration is None:
+                _mc = _course_student.sudo().create({
+                    'partner_id': partner.id,
+                    'course_id': course.id,
+                    'state': 'pending'
+                })
+            else:
+                if _registration.state == 'cancel':
+                    _registration.action_revive()
 
         return self.portal_my_courses()
 
@@ -120,9 +121,10 @@ class CustomerPortalSchool(CustomerPortal):
 
         course = _course.search([('id', '=', kwargs['course_id'])])
 
-        # If not registered register
-        _registration = course.is_student_registered(partner)
-        if _registration:
-            _registration.action_cancel()
+        if course.state == 'active':
+            # If not registered register
+            _registration = course.is_student_registered(partner)
+            if _registration:
+                _registration.action_cancel()
 
         return self.portal_my_courses()

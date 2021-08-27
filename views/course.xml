@@ -42,17 +42,22 @@
                                 class="oe_highlight"/>
                         <button name="action_revive" string="Revive" states='closed,cancel' type="object"
                                 class="oe_highlight"/>
-
-
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="website_publish_button"
+                                type="object" icon="fa-globe">
+                                <field name="website_published" widget="website_button"/>
+                            </button>
+                        </div>
+
+
                         <h1>
                             <field name="name"/>
                         </h1>
                         <notebook>
                             <page string="Data">
                                 <group col="2" colspan="2" string="">
-                                    <field name='name'/>
                                     <field name='description'/>
                                     <field name='obs'/>
                                 </group>
@@ -71,9 +76,9 @@
                                     <field name='course_students_ids' widget="one2many_list" nolabel="1">
 
                                         <tree string="Variants" editable="bottom">
-                                            <field name="name" />
-                                            <field name="partner_id" />
-                                            <field name="state" />
+                                            <field name="name"/>
+                                            <field name="partner_id"/>
+                                            <field name="state"/>
                                         </tree>
                                     </field>
                                 </group>

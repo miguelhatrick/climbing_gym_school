@@ -15,7 +15,7 @@ class Course(models.Model):
     """Courses given"""
     _name = 'climbing_gym_school.course'
     _description = 'Course'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'website.published.mixin']
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('closed', "Closed"), ('cancel', "Cancelled")]
 
@@ -26,7 +26,7 @@ class Course(models.Model):
     organizer_id = fields.Many2one('res.partner', string='Course organizer', readonly=False, required=True,
                                    track_visibility=True)
 
-    course_date = fields.Date("Course date", required=True, track_visibility=True)
+    course_date = fields.Date("Course date", required=False, track_visibility=True)
 
     career_id = fields.Many2one('climbing_gym_school.career', string='Career', required=False, index=True,
                                 track_visibility=True)
@@ -38,6 +38,10 @@ class Course(models.Model):
                                           string='Students', readonly=True)
 
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
+
+    def _compute_website_url(self):
+        for blog_post in self:
+            blog_post.website_url = "/courses/%s" % blog_post.id
 
     @api.multi
     def action_revive(self):
