@@ -9,7 +9,6 @@
                 </li>
                 <li t-if="course" class="breadcrumb-item active">
                     <t t-esc="course.name"/>
-
                 </li>
             </xpath>
         </template>
@@ -98,7 +97,7 @@
                                         </span>
                                     </span>
                                 </t>
-                                <t t-else="registration is not None and registration.state == 'pending'">
+                                <t t-if="registration is not None and registration.state == 'pending'">
                                     <span class="badge badge-pill badge-warning">
                                         <i class="fa fa-fw fa-times" aria-label="Paid" title="Closed" role="img"></i>
                                         <span class="d-none d-md-inline">
@@ -106,7 +105,7 @@
                                         </span>
                                     </span>
                                 </t>
-                                <t t-else="registration is not None and registration.state == 'accepted'">
+                                <t t-if="registration is not None and registration.state == 'accepted'">
                                     <span class="badge badge-pill badge-success">
                                         <i class="fa fa-fw fa-check" aria-label="Paid" title="Active" role="img"></i>
                                         <span class="d-none d-md-inline">

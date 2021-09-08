@@ -17,7 +17,8 @@ class CourseStudent(models.Model):
     _description = 'Student registration into a course'
     _inherit = ['mail.thread']
 
-    status_selection = [('pending', "Pending"), ('accepted', "Accepted"), ('rejected', "Rejected"), ('cancel', "Cancelled")]
+    status_selection = [('pending', "Pending"), ('accepted', "Accepted"), ('rejected', "Rejected"),
+                        ('cancel', "Cancelled")]
 
     name = fields.Char('Name', compute='_generate_name')
     obs = fields.Text('Observations')
@@ -25,8 +26,10 @@ class CourseStudent(models.Model):
     partner_id = fields.Many2one('res.partner', string='Student', readonly=False, required=True,
                                  track_visibility=True)
 
-    course_id = fields.Many2one('climbing_gym_school.course', string='Course', required=False, index=True,
+    course_id = fields.Many2one('climbing_gym_school.course', string='Course', required=True, index=True,
                                 track_visibility=True)
+
+    course_description = fields.Char(string='Course description', related='course_id.description')
 
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 

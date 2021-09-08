@@ -19,6 +19,7 @@
                     <field name="name"/>
                     <field name='partner_id'/>
                     <field name="course_id"/>
+                    <field name="course_description"/>
 
                     <field name="create_date"/>
 
@@ -42,8 +43,6 @@
                                 class="oe_highlight"/>
                         <button name="action_revive" string="Revive" states='accepted,rejected' type="object"
                                 class="oe_highlight"/>
-
-
                     </header>
                     <sheet>
                         <h1>

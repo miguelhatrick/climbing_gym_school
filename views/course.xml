@@ -63,17 +63,15 @@
                                 </group>
                                 <group col="2" colspan="2" string="Configuration">
                                     <field name='course_date'/>
-                                    <field name='organizer_id'/>
+                                    <field name='organizer_id' options="{'no_quick_create':True,'no_create_edit':True}"/>
                                     <field name='course_type_id'
                                            options="{'no_quick_create':True,'no_create_edit':True}"
                                            domain="[('state','in',['active'])]"
-
-
                                     />
                                     <field name='career_id'/>
                                 </group>
                                 <group col="4" colspan="2" string="Students">
-                                    <field name='course_students_ids' widget="one2many_list" nolabel="1">
+                                    <field name='course_students_ids' widget="one2many_list" nolabel="1" >
 
                                         <tree string="Variants" editable="bottom">
                                             <field name="name"/>
