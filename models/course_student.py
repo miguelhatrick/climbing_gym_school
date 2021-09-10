@@ -83,7 +83,6 @@ class CourseStudent(models.Model):
         for _map in self:
             _map.pos_order = _map.pos_order_line.order_id if _map.pos_order_line is not False else False
 
-
     @staticmethod
     def create_or_confirm_course_registration(self, sale_line, course_id):
         # pdb.set_trace()
@@ -94,18 +93,39 @@ class CourseStudent(models.Model):
         product_id = False
 
         if isinstance(sale_line, type(self.sudo().env['sale.order.line'])):
-            _logger.info('ORIGIN: Sale Order Line %d' % (sale_line.id))
+            _logger.info('ORIGIN: Sale Order Line %d' % sale_line.id)
             sale_order_line = sale_line
             pos_order_line = False
             partner_id = sale_line.order_id.partner_id
             product_id = sale_line.product_id
 
         if isinstance(sale_line, type(self.sudo().env['pos.order.line'])):
-            _logger.info('ORIGIN: POS Order Line %d' % (sale_line.id))
+            _logger.info('ORIGIN: POS Order Line %d' % sale_line.id)
             sale_order_line = False
             pos_order_line = sale_line
             partner_id = sale_line.order_id.partner_id
             product_id = sale_line.product_id
+
+        if partner_id is None or len(partner_id) == 0:
+            # create Ticket and return
+            _ticket_values = {
+                'company_id': None,
+                'category_id': self.env['helpdesk.ticket.category'].sudo().search(
+                    [('name', '=', 'Membresías / Cuotas')]).id,
+
+                'partner_name': "Unknown",
+                'partner_email': "Unknown",
+
+                'description': "No partner selected for purchase on POS - %s" % pos_order_line.order_id,
+                'name': 'No active course!',
+                'attachment_ids': False,
+                'channel_id': self.env['helpdesk.ticket.channel'].sudo().search([('name', '=', 'Web')]).id,
+                'partner_id': None,
+                'team_id': self.env['helpdesk.ticket.team'].sudo().search([('name', '=', 'Secretaria')]).id,
+            }
+            new_ticket = self.env['helpdesk.ticket'].sudo().create(_ticket_values)
+
+            return
 
         _logger.info('Creating COURSE REGISTRATION')
 
@@ -127,7 +147,6 @@ class CourseStudent(models.Model):
                 'partner_id': partner_id.id,
                 'obs': "Created automatically after order confirmation",
                 'course_id': course_id.id,
-
                 'product': product_id.id,
                 'sale_order_line': sale_order_line.id if sale_order_line is not False else False,
                 'pos_order_line': pos_order_line.id if pos_order_line is not False else False,
