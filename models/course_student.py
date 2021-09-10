@@ -31,6 +31,12 @@ class CourseStudent(models.Model):
 
     course_description = fields.Char(string='Course description', related='course_id.description')
 
+    product = fields.Many2one('product.product', string='Purchased product')
+    sale_order = fields.Many2one('sale.order', compute='_get_sale_order')
+    sale_order_line = fields.Many2one('sale.order.line', string='Linked Sale order line')
+    pos_order = fields.Many2one('pos.order', string='POS order', compute='_get_pos_order')
+    pos_order_line = fields.Many2one('pos.order.line', string='Linked POS order line')
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     @api.multi
@@ -68,3 +74,64 @@ class CourseStudent(models.Model):
             raise ValidationError('Can\'t register twice for the same course')
 
         pass
+
+    def _get_sale_order(self):
+        for _map in self:
+            _map.sale_order = _map.sale_order_line.order_id if _map.sale_order_line is not False else False
+
+    def _get_pos_order(self):
+        for _map in self:
+            _map.pos_order = _map.pos_order_line.order_id if _map.pos_order_line is not False else False
+
+
+    @staticmethod
+    def create_or_confirm_course_registration(self, sale_line, course_id):
+        # pdb.set_trace()
+
+        sale_order_line = False
+        pos_order_line = False
+        partner_id = False
+        product_id = False
+
+        if isinstance(sale_line, type(self.sudo().env['sale.order.line'])):
+            _logger.info('ORIGIN: Sale Order Line %d' % (sale_line.id))
+            sale_order_line = sale_line
+            pos_order_line = False
+            partner_id = sale_line.order_id.partner_id
+            product_id = sale_line.product_id
+
+        if isinstance(sale_line, type(self.sudo().env['pos.order.line'])):
+            _logger.info('ORIGIN: POS Order Line %d' % (sale_line.id))
+            sale_order_line = False
+            pos_order_line = sale_line
+            partner_id = sale_line.order_id.partner_id
+            product_id = sale_line.product_id
+
+        _logger.info('Creating COURSE REGISTRATION')
+
+        # first we look for it
+        course_student_ids = self.sudo().env['climbing_gym_school.course_student'].search([
+            ('course_id', 'in', course_id.ids),
+            ('partner_id', '=', partner_id.id)
+        ])
+
+        if len(course_student_ids) > 0:
+            for cs in course_student_ids:
+                cs.sale_order_line = sale_order_line
+                cs.pos_order_line = pos_order_line
+                cs.partner_id = partner_id
+                cs.product_id = product_id
+                cs.state = 'accepted'
+        else:
+            _my_csr = self.sudo().env['climbing_gym_school.course_student'].create({
+                'partner_id': partner_id.id,
+                'obs': "Created automatically after order confirmation",
+                'course_id': course_id.id,
+
+                'product': product_id.id,
+                'sale_order_line': sale_order_line.id if sale_order_line is not False else False,
+                'pos_order_line': pos_order_line.id if pos_order_line is not False else False,
+                'state': 'accepted',
+            })
+
+            _logger.info('Created COURSE STUDENT %d' % _my_csr.id)

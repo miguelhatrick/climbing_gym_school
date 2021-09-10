@@ -15,7 +15,7 @@ class Course(models.Model):
     """Courses given"""
     _name = 'climbing_gym_school.course'
     _description = 'Course'
-    _inherit = ['mail.thread', 'website.published.mixin']
+    _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('closed', "Closed"), ('cancel', "Cancelled")]
 
@@ -36,6 +36,11 @@ class Course(models.Model):
 
     course_students_ids = fields.One2many('climbing_gym_school.course_student', inverse_name='course_id',
                                           string='Students', readonly=True)
+
+    product_product_ids = fields.Many2many(comodel_name='product.product',
+                                           relation='climbing_gym_school_course_prod', column1='course_id',
+                                           column2='product_id',
+                                           string='Linked products')
 
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 

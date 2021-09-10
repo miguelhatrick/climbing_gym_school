@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Climbing gym School management",
+    'name': "climbing_gym_school",
     # climbing_gym_school
     'summary': """
         Climbing gym School management""",

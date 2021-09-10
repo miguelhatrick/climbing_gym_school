@@ -55,6 +55,14 @@
                                     <field name='course_id'
                                            domain="[('state','in',['pending', 'active', 'closed'])]"
                                     />
+
+                                    <field name='course_description'/>
+                                    <field name='product'/>
+                                    <field name='sale_order'/>
+                                    <field name='sale_order_line'/>
+                                    <field name='pos_order'/>
+                                    <field name='pos_order_line'/>
+
                                     <field name='obs'/>
                                 </group>
                             </page>

@@ -44,13 +44,14 @@
                                 class="oe_highlight"/>
                     </header>
                     <sheet>
+<!--
                         <div class="oe_button_box" name="button_box">
                             <button class="oe_stat_button" name="website_publish_button"
-                                type="object" icon="fa-globe">
+                                    type="object" icon="fa-globe">
                                 <field name="website_published" widget="website_button"/>
                             </button>
                         </div>
-
+!-->
 
                         <h1>
                             <field name="name"/>
@@ -63,15 +64,17 @@
                                 </group>
                                 <group col="2" colspan="2" string="Configuration">
                                     <field name='course_date'/>
-                                    <field name='organizer_id' options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                    <field name='organizer_id'
+                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
                                     <field name='course_type_id'
                                            options="{'no_quick_create':True,'no_create_edit':True}"
-                                           domain="[('state','in',['active'])]"
-                                    />
+                                           domain="[('state','in',['active'])]"/>
+                                    <field name='product_product_ids'
+                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
                                     <field name='career_id'/>
                                 </group>
                                 <group col="4" colspan="2" string="Students">
-                                    <field name='course_students_ids' widget="one2many_list" nolabel="1" >
+                                    <field name='course_students_ids' widget="one2many_list" nolabel="1">
 
                                         <tree string="Variants" editable="bottom">
                                             <field name="name"/>

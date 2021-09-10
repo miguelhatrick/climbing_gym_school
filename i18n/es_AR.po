@@ -1,0 +1,689 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* climbing_gym_school
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-10 04:42+0000\n"
+"PO-Revision-Date: 2021-09-10 01:47-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_AR\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "<i class=\"fa fa-fw fa-check\" aria-label=\"Paid\" title=\"Active\" role=\"img\"/>"
+msgstr "<i class=\"fa fa-fw fa-check\" aria-label=\"Paid\" title=\"Activo\" role=\"img\"/>"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"Cancelled\" role=\"img\"/>"
+msgstr ""
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"Closed\" role=\"img\"/>"
+msgstr ""
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+msgid "Accept"
+msgstr "Acceptar"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.course_student,state:0
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_needaction
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_needaction
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_needaction
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_needaction
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_needaction
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+msgid "Activate"
+msgstr "Activar"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.career,state:0
+#: selection:climbing_gym_school.course,state:0
+#: selection:climbing_gym_school.course_type,state:0
+#: selection:climbing_gym_school.exam,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.exam_student,state:0
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_attachment_count
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_attachment_count
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_attachment_count
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_attachment_count
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_attachment_count
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Cancel registration"
+msgstr "Cancelar registro"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.career,state:0
+#: selection:climbing_gym_school.course,state:0
+#: selection:climbing_gym_school.course_student,state:0
+#: selection:climbing_gym_school.course_type,state:0
+#: selection:climbing_gym_school.exam,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__career_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__career_id
+#: model:ir.ui.menu,name:climbing_gym_school.career
+msgid "Career"
+msgstr "Carrera"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_career
+msgid "Career (ICABA)"
+msgstr "Carrera (ICABA)"
+
+#. module: climbing_gym_school
+#: model:ir.actions.act_window,name:climbing_gym_school.career_list_action
+msgid "Careers"
+msgstr "Carreras"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.course,state:0
+#: selection:climbing_gym_school.exam,state:0
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_course
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__course_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__course_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__course_id
+#: model:ir.ui.menu,name:climbing_gym_school.course
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_home_menu_course
+msgid "Course"
+msgstr "Curso"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__course_student_id
+msgid "Course Student"
+msgstr "Estudiante del curso"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_course_type
+msgid "Course Type"
+msgstr "Tipo de curso"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_date
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Course date"
+msgstr "Fecha del curso"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__course_description
+msgid "Course description"
+msgstr "Descripción del curso"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_home_course
+msgid "Course inscription"
+msgstr "Inscripción al curso"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__organizer_id
+msgid "Course organizer"
+msgstr "Organizador del curso"
+
+#. module: climbing_gym_school
+#: model:ir.ui.menu,name:climbing_gym_school.course_student
+msgid "Course student"
+msgstr "Estudiante del curso"
+
+#. module: climbing_gym_school
+#: model:ir.actions.act_window,name:climbing_gym_school.course_student_list_action
+msgid "Course students"
+msgstr "Estudiantes del curso"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_type_id
+#: model:ir.ui.menu,name:climbing_gym_school.course_type
+msgid "Course type"
+msgstr "Tipo de curso"
+
+#. module: climbing_gym_school
+#: model:ir.actions.act_window,name:climbing_gym_school.course_type_list_action
+msgid "Course types"
+msgstr "Tipos de curso"
+
+#. module: climbing_gym_school
+#: model:ir.actions.act_window,name:climbing_gym_school.course_list_action
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__course_ids
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_home_menu_course
+msgid "Courses"
+msgstr "Cursos"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__create_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__create_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__create_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__create_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__create_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__create_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__create_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__create_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__create_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__create_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: climbing_gym_school
+#: code:addons/climbing_gym_school/controllers/portal_course.py:46
+#, python-format
+msgid "Creation date"
+msgstr "Fecha de creación"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+msgid "Data"
+msgstr "Datos"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__description
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__description
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__description
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__description
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Description"
+msgstr "Descripción"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__display_name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__display_name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__display_name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__display_name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__display_name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+msgid "Event Time Range"
+msgstr "Rango de horas del evento"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_exam
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__exam_id
+msgid "Exam"
+msgstr "Examen"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__exam_date
+msgid "Exam date"
+msgstr "Fecha examen"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_exam_student
+msgid "Exam student result"
+msgstr "Resultados del examen"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_follower_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_follower_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_follower_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_follower_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_follower_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_channel_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_channel_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_channel_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_channel_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_channel_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_partner_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_partner_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_partner_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_partner_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_partner_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__grade
+msgid "Grade"
+msgstr "Nota"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__id
+msgid "ID"
+msgstr ""
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Id"
+msgstr ""
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__message_unread
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__message_unread
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__message_unread
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__message_unread
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__message_unread
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__message_needaction
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__message_needaction
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__message_needaction
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__message_needaction
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__message_needaction
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__message_has_error
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__message_has_error
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__message_has_error
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__message_has_error
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__message_has_error
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_is_follower
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_is_follower
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_is_follower
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_is_follower
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_is_follower
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career____last_update
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course____last_update
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student____last_update
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type____last_update
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam____last_update
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__write_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__write_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__write_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__write_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__write_uid
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__write_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__write_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__write_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__write_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__write_date
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__pos_order_line
+msgid "Linked POS order line"
+msgstr "Línea de order de venta PDV vinculada"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__sale_order_line
+msgid "Linked Sale order line"
+msgstr "Linea de venta vinculada"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__product_product_ids
+msgid "Linked products"
+msgstr "Productos vinculados"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_main_attachment_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_main_attachment_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_main_attachment_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_main_attachment_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_main_attachment_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_has_error
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_has_error
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_has_error
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_has_error
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_has_error
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__name
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Not set"
+msgstr "No asignado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_needaction_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_needaction_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_needaction_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_needaction_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_needaction_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_has_error_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_has_error_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_has_error_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_has_error_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_has_error_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_has_error_counter
+msgid "Number of error"
+msgstr "Número de error"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__message_needaction_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__message_needaction_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__message_needaction_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__message_needaction_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__message_needaction_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__message_has_error_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__message_has_error_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__message_has_error_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__message_has_error_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__message_has_error_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__message_unread_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__message_unread_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__message_unread_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__message_unread_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__message_unread_counter
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__obs
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__obs
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__obs
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__obs
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__obs
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__obs
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__pos_order
+msgid "POS order"
+msgstr "Orden PDV"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.career,state:0
+#: selection:climbing_gym_school.course,state:0
+#: selection:climbing_gym_school.course_student,state:0
+#: selection:climbing_gym_school.course_type,state:0
+#: selection:climbing_gym_school.exam,state:0
+#: selection:climbing_gym_school.exam_student,state:0
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos del PDV"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__product
+msgid "Purchased product"
+msgstr "Producto comprado"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Register"
+msgstr "Registrar"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Registration closed"
+msgstr "Registro cerrado"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: climbing_gym_school
+#: selection:climbing_gym_school.course_student,state:0
+#: selection:climbing_gym_school.exam_student,state:0
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+msgid "Revive"
+msgstr "Revivir"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_sale_order
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: climbing_gym_school
+#: model:ir.ui.menu,name:climbing_gym_school.menu_school
+#: model:ir.ui.menu,name:climbing_gym_school.school_config
+msgid "School"
+msgstr "Escuela"
+
+#. module: climbing_gym_school
+#: code:addons/climbing_gym_school/controllers/portal_course.py:47
+#, python-format
+msgid "Stage"
+msgstr "Estado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__state
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__state
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__state
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__state
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__state
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__state
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Status"
+msgstr "Estado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__partner_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__organizer_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__student_id
+msgid "Student"
+msgstr "Estudiante"
+
+#. module: climbing_gym_school
+#: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_course_student
+msgid "Student registration into a course"
+msgstr "Registro de estudiante en el curso"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_students_ids
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+msgid "Students"
+msgstr "Estudiantes"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "There are currently no courses."
+msgstr "Actualmente no hay cursos."
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
+msgid "Type"
+msgstr "Tipo"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_unread
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_unread
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_unread
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_unread
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_unread
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes por leer"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_unread_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__message_unread_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__message_unread_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__message_unread_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__message_unread_counter
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+msgid "Variants"
+msgstr "Variantes"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__website_message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__website_message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__website_message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_type__website_message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__website_message_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_career__website_message_ids
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course__website_message_ids
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_student__website_message_ids
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_course_type__website_message_ids
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam__website_message_ids
+#: model:ir.model.fields,help:climbing_gym_school.field_climbing_gym_school_exam_student__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: climbing_gym_school
+#: model:ir.actions.server,name:climbing_gym_school.action_server
+msgid "climbing_gym server"
+msgstr ""
