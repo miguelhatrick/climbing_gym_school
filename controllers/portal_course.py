@@ -107,7 +107,7 @@ class CustomerPortalSchool(CustomerPortal):
                 })
             else:
                 if _registration.state == 'cancel':
-                    _registration.action_revive()
+                    _registration.sudo().action_revive()
 
         return self.portal_my_courses()
 
@@ -125,6 +125,6 @@ class CustomerPortalSchool(CustomerPortal):
             # If not registered register
             _registration = course.is_student_registered(partner)
             if _registration:
-                _registration.action_cancel()
+                _registration.sudo().action_cancel()
 
         return self.portal_my_courses()
