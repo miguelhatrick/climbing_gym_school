@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 04:42+0000\n"
-"PO-Revision-Date: 2021-09-10 01:47-0300\n"
+"POT-Creation-Date: 2021-09-11 15:38+0000\n"
+"PO-Revision-Date: 2021-09-11 12:38-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Descripción del curso"
 
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_home_course
-msgid "Course inscription"
+msgid "Course inscriptions"
 msgstr "Inscripción al curso"
 
 #. module: climbing_gym_school
@@ -547,7 +547,7 @@ msgstr "Pendiente"
 #. module: climbing_gym_school
 #: model:ir.model,name:climbing_gym_school.model_pos_order
 msgid "Point of Sale Orders"
-msgstr "Pedidos del PDV"
+msgstr "Pedidos del TPV"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__product
