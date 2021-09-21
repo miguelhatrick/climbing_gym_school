@@ -80,7 +80,8 @@ class Course(models.Model):
 
     def _calculate_available(self):
         for _c in self:
-            _c.available_spots = _c.total_spots - _c.course_students_ids.search_count([('state', 'in', ['accepted'])])
+            _c.available_spots = _c.total_spots - _c.course_students_ids.search_count(
+                [('state', 'in', ['accepted']), ('course_id', '=', _c.id)])
 
     def is_student_registered(self, partner_id):
         """
