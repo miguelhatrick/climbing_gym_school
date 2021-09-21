@@ -20,9 +20,7 @@
                     <field name='partner_id'/>
                     <field name="course_id"/>
                     <field name="course_description"/>
-
                     <field name="create_date"/>
-
                     <field name="write_date"/>
                     <field name="state"/>
                 </tree>
@@ -89,6 +87,24 @@
                 "view_mode": "tree,form",
                 "res_model": self._name,
                 }
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="course_student_search_view">
+            <field name="name">climbing_gym_school_course_student.search</field>
+            <field name="model">climbing_gym_school.course_student</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="course_description"/>
+                    <field name="state"/>
+                    <filter string='Accepted' name='filter_active' domain="[('state','=','accepted')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_course" string="Course" context="{'group_by':'course_id'}"/>
+                        <filter name="group_status" string="Status" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
             </field>
         </record>
 

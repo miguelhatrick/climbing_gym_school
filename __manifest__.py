@@ -23,17 +23,17 @@
 
     # always loaded
     'data': [
-            'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
 
-            'views/career.xml',
-            'views/course.xml',
-            'views/course_student.xml',
-            'views/course_type.xml',
-            'views/menu.xml',
+        'views/career.xml',
+        'views/course.xml',
+        'views/course_student.xml',
+        'views/course_type.xml',
+        'views/menu.xml',
+        'views/res_partner.xml',
 
-            'views/portal/portal_my_documents.xml',
-            'views/portal/portal_course.xml'
-
+        'views/portal/portal_my_documents.xml',
+        'views/portal/portal_course.xml'
 
     ],
     # only loaded in demonstration mode
@@ -41,4 +41,3 @@
         # 'demo/demo.xml',
     ],
 }
-

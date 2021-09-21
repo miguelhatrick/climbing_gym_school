@@ -19,6 +19,8 @@
                     <field name="name"/>
                     <field name='description'/>
                     <field name="course_date"/>
+                    <field name="total_spots"/>
+                    <field name="available_spots"/>
                     <field name="organizer_id"/>
                     <!--          <field name="description"/>-->
                     <field name="state"/>
@@ -44,36 +46,40 @@
                                 class="oe_highlight"/>
                     </header>
                     <sheet>
-<!--
-                        <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" name="website_publish_button"
-                                    type="object" icon="fa-globe">
-                                <field name="website_published" widget="website_button"/>
-                            </button>
-                        </div>
-!-->
+                        <!--
+                                                <div class="oe_button_box" name="button_box">
+                                                    <button class="oe_stat_button" name="website_publish_button"
+                                                            type="object" icon="fa-globe">
+                                                        <field name="website_published" widget="website_button"/>
+                                                    </button>
+                                                </div>
+                        !-->
 
                         <h1>
                             <field name="name"/>
                         </h1>
-                        <notebook>
-                            <page string="Data">
-                                <group col="2" colspan="2" string="">
-                                    <field name='description'/>
-                                    <field name='obs'/>
-                                </group>
-                                <group col="2" colspan="2" string="Configuration">
-                                    <field name='course_date'/>
-                                    <field name='organizer_id'
-                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
-                                    <field name='course_type_id'
-                                           options="{'no_quick_create':True,'no_create_edit':True}"
-                                           domain="[('state','in',['active'])]"/>
-                                    <field name='product_product_ids'
-                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
-                                    <field name='career_id'/>
-                                </group>
-                                <group col="4" colspan="2" string="Students">
+
+
+                        <group col="2" colspan="2" string="">
+                            <field name='description'/>
+                            <field name='obs'/>
+                        </group>
+                        <group col="2" colspan="2" string="Configuration">
+                            <field name='course_date'/>
+                            <field name="total_spots"/>
+                            <field name="available_spots"/>
+                            <field name='organizer_id'
+                                   options="{'no_quick_create':True,'no_create_edit':True}"/>
+                            <field name='course_type_id'
+                                   options="{'no_quick_create':True,'no_create_edit':True}"
+                                   domain="[('state','in',['active'])]"/>
+                            <field name='product_product_ids'
+                                   options="{'no_quick_create':True,'no_create_edit':True}"/>
+                            <field name='career_id'/>
+                        </group>
+                        <group col="4" colspan="2" string="Students">
+                            <notebook>
+                                <page string="">
                                     <field name='course_students_ids' widget="one2many_list" nolabel="1">
 
                                         <tree string="Variants" editable="bottom">
@@ -82,10 +88,11 @@
                                             <field name="state"/>
                                         </tree>
                                     </field>
-                                </group>
+                                </page>
+                            </notebook>
+                        </group>
 
-                            </page>
-                        </notebook>
+
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>

@@ -42,6 +42,11 @@ class Course(models.Model):
                                            column2='product_id',
                                            string='Linked products')
 
+    total_spots = fields.Integer(string="Total spots in this course")
+
+    available_spots = fields.Integer(string="Available spots in this course", readonly=True,
+                                     compute='_calculate_available')
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     def _compute_website_url(self):
@@ -73,6 +78,10 @@ class Course(models.Model):
         for _map in self:
             _map.name = "COURSE-%s" % (_map.id if _map.id else '')
 
+    def _calculate_available(self):
+        for _c in self:
+            _c.available_spots = _c.total_spots - _c.course_students_ids.search_count([('state', 'in', ['accepted'])])
+
     def is_student_registered(self, partner_id):
         """
         Control if a partner is registered in the course
@@ -84,3 +93,11 @@ class Course(models.Model):
         if len(register) == 1:
             return register[0]
         return None
+
+    # TODO: is this used?
+    @staticmethod
+    def current_active_courses():
+
+        active_course_ids = self.sudo().env['climbing_gym_school.course'].search([
+            ('state', 'in', ['active'])
+        ])
