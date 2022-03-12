@@ -12,15 +12,18 @@ class PosOrderSchool(models.Model):
     @api.multi
     def action_pos_order_paid(self):
         # pdb.set_trace()
+        val = super(PosOrderSchool, self).action_pos_order_paid()
+
         self.create_course_registration()
-        return super(PosOrderSchool, self).action_pos_order_paid()
+
+        return val
 
     @api.multi
     def create_course_registration(self):
         """Creates a new Registration to courses based on the products"""
 
         active_course_ids = self.sudo().env['climbing_gym_school.course'].search([
-            ('state', 'in', ['active'])
+            ('state', 'in', ['active', 'closed'])
         ])
         _logger.info('Begin COURSE REGISTRATION from POS SALE... ')
 
@@ -29,7 +32,51 @@ class PosOrderSchool(models.Model):
 
                 course_ids = list(filter(lambda x: line.product_id in x.product_product_ids, active_course_ids))
                 if len(course_ids) > 0:
-                    self.sudo().env['climbing_gym_school.course_student'].create_or_confirm_course_registration(self,
-                                                                                                                line,
-                                                                                                                course_ids[
-                                                                                                                    0])
+                    if course_ids[0].state == 'active':
+                        self.sudo().env['climbing_gym_school.course_student'].create_or_confirm_course_registration(
+                            self,
+                            line,
+                            course_ids[0])
+
+                        #TODO: Ticket if qty > 1
+
+                        if line.qty > 1:
+                        # create Ticket
+                            _ticket_values = {
+                                'company_id': None,
+                                'category_id': self.env['helpdesk.ticket.category'].sudo().search(
+                                    [('name', '=', 'Membresías / Cuotas')]).id,
+
+                                'partner_name': order.partner_id.name,
+                                'partner_email': order.partner_id.email,
+
+                                'description': "More than 1 course paid - %s - %s" % (order.id, course_ids[0].description),
+
+                                'name': '>1 courses paid!',
+                                'attachment_ids': False,
+                                'channel_id': self.env['helpdesk.ticket.channel'].sudo().search([('name', '=', 'Web')]).id,
+                                'partner_id': order.partner_id.id,
+                                'team_id': self.env['helpdesk.ticket.team'].sudo().search([('name', '=', 'Secretaria')]).id,
+                            }
+                            new_ticket = self.env['helpdesk.ticket'].sudo().create(_ticket_values)
+
+
+                    else:
+                        #TODO: Verify this
+                        # create Ticket
+                        _ticket_values = {
+                            'company_id': None,
+                            'category_id': self.env['helpdesk.ticket.category'].sudo().search(
+                                [('name', '=', 'Membresías / Cuotas')]).id,
+
+                            'partner_name': order.partner_id.name,
+                            'partner_email': order.partner_id.email,
+
+                            'description': "No active course for purchase - %s" % order.id,
+                            'name': 'No active course!',
+                            'attachment_ids': False,
+                            'channel_id': self.env['helpdesk.ticket.channel'].sudo().search([('name', '=', 'Web')]).id,
+                            'partner_id': order.partner_id.id,
+                            'team_id': self.env['helpdesk.ticket.team'].sudo().search([('name', '=', 'Secretaria')]).id,
+                        }
+                        new_ticket = self.env['helpdesk.ticket'].sudo().create(_ticket_values)

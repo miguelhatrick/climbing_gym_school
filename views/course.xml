@@ -21,6 +21,7 @@
                     <field name="course_date"/>
                     <field name="total_spots"/>
                     <field name="available_spots"/>
+                    <field name="sold_spots"/>
                     <field name="organizer_id"/>
                     <!--          <field name="description"/>-->
                     <field name="state"/>
@@ -67,7 +68,10 @@
                         <group col="2" colspan="2" string="Configuration">
                             <field name='course_date'/>
                             <field name="total_spots"/>
+                            <field name="sold_spots"/>
                             <field name="available_spots"/>
+
+                            <field name="accepted_students"/>
                             <field name='organizer_id'
                                    options="{'no_quick_create':True,'no_create_edit':True}"/>
                             <field name='course_type_id'

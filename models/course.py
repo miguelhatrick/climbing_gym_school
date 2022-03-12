@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, date, timezone
 from typing import List
 
 import odoo
+from addons.stock.wizard.stock_change_product_qty import ProductChangeQuantity
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -47,6 +48,12 @@ class Course(models.Model):
     available_spots = fields.Integer(string="Available spots in this course", readonly=True,
                                      compute='_calculate_available')
 
+    accepted_students = fields.Integer(string="Accepted student qty", readonly=True,
+                                       compute='_calculate_accepted_students')
+
+    sold_spots = fields.Integer(string="Sold spots for this course", readonly=True,
+                                compute='_calculate_sold')
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     def _compute_website_url(self):
@@ -80,8 +87,16 @@ class Course(models.Model):
 
     def _calculate_available(self):
         for _c in self:
-            _c.available_spots = _c.total_spots - _c.course_students_ids.search_count(
+            _c.available_spots = _c.total_spots - _c.sold_spots
+
+    def _calculate_accepted_students(self):
+        for _c in self:
+            _c.accepted_students = _c.course_students_ids.search_count(
                 [('state', 'in', ['accepted']), ('course_id', '=', _c.id)])
+
+    def _calculate_sold(self):
+        for _c in self:
+            _c.sold_spots = sum(map(lambda x: int(x.sales_count), _c.product_product_ids))
 
     def is_student_registered(self, partner_id):
         """
@@ -97,8 +112,55 @@ class Course(models.Model):
 
     # TODO: is this used?
     @staticmethod
-    def current_active_courses():
+    def current_active_courses(self):
 
         active_course_ids = self.sudo().env['climbing_gym_school.course'].search([
             ('state', 'in', ['active'])
         ])
+
+    def update_product_availability(self):
+        """
+        Updates quantities of the products linked to this course
+        """
+        available = self.available_spots
+
+        for prod in self.product_product_ids:
+            vals = {
+                'new_quantity': float(1.0),
+                'product_id': prod.id,
+                'lot_id': None,
+                'location_id': None
+            }
+
+            # Get default location
+            vals2 = self.sudo().env['stock.change.product.qty'].default_get(vals)
+
+            vals = {
+                'new_quantity': float(available + prod.sales_count),
+                'product_id': prod.id,
+                'lot_id': None,
+                'location_id': vals2["location_id"]
+            }
+
+            # Perform the qty update
+            product_changer: ProductChangeQuantity = self.sudo().env['stock.change.product.qty'].create(vals)
+            product_changer.change_product_qty()
+
+    @api.model
+    def create(self, vals):
+        # self.message_post(body='Created package', subject='Package modification', message_type='notification', subtype=None, parent_id=False, attachments=None)
+        result = super(Course, self).create(vals)
+
+        if result:
+            result.update_product_availability()
+
+        return result
+
+    @api.multi
+    def write(self, vals):
+        result = super(Course, self).write(vals)
+
+        if result:
+            self.update_product_availability()
+
+        return result
