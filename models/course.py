@@ -340,7 +340,7 @@ class Course(models.Model):
             }
 
             # Perform the qty update
-            product_changer: ProductChangeQuantity = scpq.create(vals)
+            product_changer = scpq.create(vals)
             product_changer.change_product_qty()
 
     @api.model
