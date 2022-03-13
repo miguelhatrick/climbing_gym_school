@@ -34,9 +34,11 @@ class Course(models.Model):
 
     course_date = fields.Date("Course start", required=False, track_visibility=True)
 
-    inscription_start_date = fields.Date("Registration begin", required=True, track_visibility=True)
+    inscription_start_date = fields.Date("Registration begin", required=True, track_visibility=True,
+                                         default=fields.Date.context_today)
 
-    inscription_end_date = fields.Date("Registration end", required=True, track_visibility=True)
+    inscription_end_date = fields.Date("Registration end", required=True, track_visibility=True,
+                                       default=fields.Date.context_today)
 
     date_tz = fields.Selection('_tz_get', string='Timezone', required=True,
                                default=lambda self: self.env.user.tz or 'UTC')
@@ -65,7 +67,7 @@ class Course(models.Model):
                                            string='Linked products')
 
     total_spots_qty = fields.Integer(string="Total spots in this course", required=True,
-                                     track_visibility=True)
+                                     track_visibility=True, default=1)
 
     available_spots_qty = fields.Integer(string="Available spots in this course", readonly=True,
                                          compute='_calculate_available_qty')
