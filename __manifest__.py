@@ -25,6 +25,8 @@
     'data': [
         'security/ir.model.access.csv',
 
+        'data/cron_jobs.xml',
+
         'views/career.xml',
         'views/course.xml',
         'views/course_student.xml',

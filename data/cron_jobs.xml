@@ -1,14 +1,14 @@
 <odoo>
     <data noupdate="1">
-        <!--Member Access Package cron jobs-->
-        <record id="worker_access_package_create" model="ir.cron">
-            <field name="name">Create worker MAPS</field>
-            <field name="model_id" ref="model_climbing_gym_worker_access_package"/>
+
+         <record id="course_status_update" model="ir.cron">
+            <field name="name">Update the course status</field>
+            <field name="model_id" ref="model_climbing_gym_school_course"/>
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
-            <field name="code">model.cron_create_worker_maps()</field>
-            <field name="interval_number">1</field>
-            <field name="interval_type">months</field>
+            <field name="code">model.cron_update_course_status()</field>
+            <field name="interval_number">3</field>
+            <field name="interval_type">hours</field>
             <field name="numbercall">-1</field>
         </record>
     </data>

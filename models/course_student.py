@@ -160,7 +160,6 @@ class CourseStudent(models.Model):
         # self.message_post(body='Created package', subject='Package modification', message_type='notification', subtype=None, parent_id=False, attachments=None)
         result = super(CourseStudent, self).create(vals)
 
-        # Todo: no idea if this works
         if result:
             result.course_id.update_product_availability()
 
@@ -170,7 +169,6 @@ class CourseStudent(models.Model):
     def write(self, vals):
         result = super(CourseStudent, self).write(vals)
 
-        # Todo: no idea if this works
         if result:
             self.course_id.update_product_availability()
 
