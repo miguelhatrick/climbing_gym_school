@@ -78,6 +78,9 @@ class Course(models.Model):
     sold_spots_qty = fields.Integer(string="Sold spots", readonly=True,
                                     compute='_calculate_sold_qty')
 
+    sold_spots_so_qty = fields.Integer(string="Sold spots though Sale Order", readonly=True,
+                                        compute='_calculate_sold_so_qty')
+
     sold_spots_pos_qty = fields.Integer(string="Sold spots though POS", readonly=True,
                                         compute='_calculate_sold_pos_qty')
 
@@ -210,7 +213,21 @@ class Course(models.Model):
         Calculate all sales. POS + SaleOrder
         """
         for _c in self:
-            _c.sold_spots_qty = sum(map(lambda x: int(x.sales_count), _c.product_product_ids))
+            _c.sold_spots_qty = _c.sold_spots_pos_qty + _c.sold_spots_so_qty
+
+    def _calculate_sold_so_qty(self):
+        """
+        Calculate to total sales though POS for all products included in this course
+        """
+        _filter = ['sale', 'done']
+        for _c in self:
+            # Search the POS Sales lines by product
+            _lines = self.sudo().env['sale.order.line'].search([
+                ('product_id', 'in', _c.product_product_ids.ids)
+            ])
+
+            # Calculate qty
+            _c.sold_spots_so_qty = sum(map(lambda x: int(x.product_uom_qty) if x.order_id.state in _filter else 0, _lines))
 
     def _calculate_sold_pos_qty(self):
         """
@@ -299,14 +316,13 @@ class Course(models.Model):
 
         for prod in self.product_product_ids:
 
-            # Get the POS sale of this product here We need to subtract it from the prod.sales_count
-            _lines = self.sudo().env['pos.order.line'].search([
-                ('product_id', '=', prod.id)
-            ])
+            # Get the SO sale of this product here We need to subtract it from the prod.sales_count
+            _lines = self.sudo().env['sale.order.line'].search([('product_id', 'in', prod.ids)])
 
-            # Calculate POS qty
-            _filter = ['paid', 'done', 'invoiced']
-            _sold_pos_qty = sum(map(lambda x: int(x.qty) if x.order_id.state in _filter else 0, _lines))
+            # Calculate qty #
+            _filter = ['sale', 'done']
+            sold_so_qty = sum(
+                map(lambda x: int(x.product_uom_qty) if x.order_id.state in _filter else 0, _lines))
 
             # Verify Status and date
             _current_date = datetime.now().date()
@@ -315,9 +331,9 @@ class Course(models.Model):
                     self.inscription_start_date > _current_date or \
                     self.inscription_end_date < _current_date:
                 _logger.info('Course inactive or out of registering date.')
-                _new_quantity = float(prod.sales_count - _sold_pos_qty)
+                _new_quantity = float(sold_so_qty)
             else:
-                _new_quantity = float(_available + prod.sales_count - _sold_pos_qty)
+                _new_quantity = float(_available + sold_so_qty)
 
             vals = {
                 'new_quantity': float(1.0),
