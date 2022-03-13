@@ -157,7 +157,6 @@ class CourseStudent(models.Model):
 
     @api.model
     def create(self, vals):
-        # self.message_post(body='Created package', subject='Package modification', message_type='notification', subtype=None, parent_id=False, attachments=None)
         result = super(CourseStudent, self).create(vals)
 
         if result:

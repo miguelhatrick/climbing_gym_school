@@ -86,6 +86,8 @@ class Course(models.Model):
     pos_order_ids = fields.One2many('pos.order', string="Pos orders", readonly=True,
                                     compute='_calculate_pos_order_ids')
 
+    dummy_counter = fields.Integer(string="used to trigger writes")
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     def _compute_website_url(self):
@@ -281,6 +283,11 @@ class Course(models.Model):
         ])
 
     def update_product_availability(self):
+
+        super(Course, self).browse(self.id)._update_product_availability()
+
+
+    def _update_product_availability(self):
         """
         Updates quantities of the products linked to this course
         """
@@ -315,21 +322,25 @@ class Course(models.Model):
                 'new_quantity': float(1.0),
                 'product_id': prod.id,
                 'lot_id': None,
-                'location_id': None
+                'location_id': None,
+                'partner_id': None
             }
 
             # Get default location
-            vals2 = self.sudo().env['stock.change.product.qty'].default_get(vals)
+            scpq = self.sudo().env['stock.change.product.qty_custom']
+
+            vals2 = scpq.default_get(vals)
 
             vals = {
                 'new_quantity': _new_quantity,
                 'product_id': prod.id,
-                'lot_id': None,
-                'location_id': vals2["location_id"]
+                # 'lot_id': None,
+                'location_id': vals2["location_id"],
+                'partner_id': None
             }
 
             # Perform the qty update
-            product_changer: ProductChangeQuantity = self.sudo().env['stock.change.product.qty'].create(vals)
+            product_changer: ProductChangeQuantity = scpq.create(vals)
             product_changer.change_product_qty()
 
     @api.model

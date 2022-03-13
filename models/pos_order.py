@@ -38,10 +38,7 @@ class PosOrderSchool(models.Model):
                             line,
                             course_ids[0])
 
-                        #TODO: Ticket if qty > 1
-
                         if line.qty > 1:
-                        # create Ticket
                             _ticket_values = {
                                 'company_id': None,
                                 'category_id': self.env['helpdesk.ticket.category'].sudo().search(
