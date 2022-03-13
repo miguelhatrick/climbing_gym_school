@@ -8,7 +8,6 @@ from typing import List
 import pytz
 
 import odoo
-from addons.stock.wizard.stock_change_product_qty import ProductChangeQuantity
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
