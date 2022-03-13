@@ -25,8 +25,7 @@ class Career(models.Model):
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     course_ids = fields.One2many('climbing_gym_school.course', inverse_name='career_id',
-                                          string='Courses', readonly=True)
-
+                                 string='Courses', readonly=True)
 
     @api.multi
     def action_revive(self):
@@ -42,4 +41,3 @@ class Career(models.Model):
     def action_cancel(self):
         for _map in self:
             _map.state = 'cancel'
-
