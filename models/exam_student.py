@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 
 
 class ExamStudent(models.Model):
-    """Career"""
+    """Exam result of each student"""
     _name = 'climbing_gym_school.exam_student'
     _description = 'Exam student result'
     _inherit = ['mail.thread']
@@ -22,19 +22,27 @@ class ExamStudent(models.Model):
     name = fields.Char('Name', compute='_generate_name')
     obs = fields.Text('Observations')
 
-    grade = fields.Text('Grade')
+    grade = fields.Integer('Grade')
 
-    student_id = fields.Many2one('res.partner', string='Student', readonly=False, required=True,
-
+    partner_id = fields.Many2one('res.partner', string='Student', readonly=False, required=True,
                                  track_visibility=True)
     exam_id = fields.Many2one('climbing_gym_school.exam', string='Exam', required=True, index=True,
                               track_visibility=True)
-    course_id = fields.Many2one('climbing_gym_school.course', string='Course', required=True, index=True,
-                                track_visibility=True)
-    course_student_id = fields.Many2one('climbing_gym_school.course_student', string='Course Student', required=False,
-                                        index=True,
-                                        track_visibility=True)
+
+    course_id = fields.Many2one('climbing_gym_school.course', string='Course', compute='_get_course_id')
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
+
+    @api.onchange('exam_id')
+    def on_change_exam(self):
+        # self._get_course()
+        # self._get_course_type()
+        pass
+
+    @api.multi
+    def write(self, vals):
+        result = super(ExamStudent, self).write(vals)
+        return result
 
     @api.multi
     def action_revive(self):
@@ -54,4 +62,8 @@ class ExamStudent(models.Model):
     def _generate_name(self):
         # pdb.set_trace()
         for _map in self:
-            _map.name = "EXAM-ST-%s" % (_map.id if _map.id else '')
+            _map.name = "EXAM-ST-%s" % (_map.id or '')
+
+    def _get_course_id(self):
+        for _map in self:
+            _map.course_id = _map.exam_id.course_id if _map.exam_id else None

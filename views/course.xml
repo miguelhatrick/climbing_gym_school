@@ -8,7 +8,7 @@
             <field name="res_model">climbing_gym_school.course</field>
             <field name="view_mode">tree,form</field>
 
-           <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
             <!--   <field name="search_view_id" ref="event_monthly_content_search_view"/> -->
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">No records yet!</p>
@@ -52,19 +52,30 @@
                                 class="oe_highlight"/>
                         <button name="action_revive" string="Revive" states='closed,cancel' type="object"
                                 class="oe_highlight"/>
+                        <button name="action_create_exam" string="Create Exam" states='closed' type="object"
+                                class="oe_highlight"/>
 
                         <button name="action_send_mailing" string="Send email" states='active,pending' type="object"
                                 class="oe_highlight"/>
                     </header>
                     <sheet>
-                        <!--
-                                                <div class="oe_button_box" name="button_box">
-                                                    <button class="oe_stat_button" name="website_publish_button"
-                                                            type="object" icon="fa-globe">
-                                                        <field name="website_published" widget="website_button"/>
-                                                    </button>
-                                                </div>
-                        !-->
+
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                    name="action_open_view_course_students"
+                                    type="object"
+                                    icon="fa-users">
+                                <field string="Students" name="course_students_count" widget="statinfo"/>
+                            </button>
+
+                            <button class="action_open_view_course_exam"
+                                    name="action_open_view_course_exam"
+                                    type="object"
+                                    icon="fa-book">
+                                <field string="Exams" name="course_exam_count" widget="statinfo"/>
+                            </button>
+                        </div>
+
 
                         <h1>
                             <field name="name"/>
@@ -186,7 +197,7 @@
         </record>
 
 
-         <record model="ir.ui.view" id="course_search_view">
+        <record model="ir.ui.view" id="course_search_view">
             <field name="name">climbing_gym_school_course.search</field>
             <field name="model">climbing_gym_school.course</field>
             <field name="arch" type="xml">
@@ -201,7 +212,6 @@
                 </search>
             </field>
         </record>
-
 
 
     </data>

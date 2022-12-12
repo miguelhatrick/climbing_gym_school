@@ -97,7 +97,7 @@ class CustomerPortalSchool(CustomerPortal):
 
         if course.state == 'active':
             # If not registered register
-            _registration = course.is_student_registered(partner)
+            _registration = course.find_registration(partner)
 
             if _registration is None:
                 _mc = _course_student.sudo().create({
@@ -123,7 +123,7 @@ class CustomerPortalSchool(CustomerPortal):
 
         if course.state == 'active':
             # If not registered register
-            _registration = course.is_student_registered(partner)
+            _registration = course.find_registration(partner)
             if _registration:
                 _registration.sudo().action_cancel()
 

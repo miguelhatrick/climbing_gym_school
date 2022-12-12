@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-13 05:08+0000\n"
-"PO-Revision-Date: 2022-03-13 02:11-0300\n"
+"POT-Creation-Date: 2022-12-11 17:09+0000\n"
+"PO-Revision-Date: 2022-12-11 14:12-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,7 @@ msgstr "Aceptar"
 #: selection:climbing_gym_school.course_student,state:0
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_search_view
 msgid "Accepted"
 msgstr "Aceptado"
 
@@ -75,15 +76,30 @@ msgstr "Activar"
 #: selection:climbing_gym_school.career,state:0
 #: selection:climbing_gym_school.course,state:0
 #: selection:climbing_gym_school.course_type,state:0
-#: selection:climbing_gym_school.exam,state:0
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_search_view
 msgid "Active"
 msgstr "Activo"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_form_view
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
+msgid "Approve all"
+msgstr "Aprobar todo"
 
 #. module: climbing_gym_school
 #: selection:climbing_gym_school.exam_student,state:0
 msgid "Approved"
 msgstr "Aprobado"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__approved_students_ids
+msgid "Approved students"
+msgstr "Estudiantes aprobados"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_attachment_count
@@ -104,6 +120,7 @@ msgstr "Espacios disponibles"
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -153,6 +170,7 @@ msgstr "Cambiar cantidad producto"
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
 msgid "Close"
 msgstr "Cerrar"
 
@@ -164,6 +182,7 @@ msgstr "Cerrado"
 
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
 msgid "Configuration"
 msgstr "Configuración"
 
@@ -184,9 +203,14 @@ msgid "Course"
 msgstr "Curso"
 
 #. module: climbing_gym_school
-#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__course_student_id
-msgid "Course Student"
-msgstr "Estudiante del curso"
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_exam_count
+msgid "Course Exam Count"
+msgstr "Conteo de exámenes aprobados"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_students_count
+msgid "Course Students Count"
+msgstr "Conteo de estudiantes del curso"
 
 #. module: climbing_gym_school
 #: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_course_type
@@ -216,12 +240,7 @@ msgstr "Organizador del curso"
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_date
 msgid "Course start"
-msgstr "Inicio de curso"
-
-#. module: climbing_gym_school
-#: model:ir.ui.menu,name:climbing_gym_school.course_student
-msgid "Course student"
-msgstr "Estudiante del curso"
+msgstr "Inicio del curso"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_res_partner__climbing_gym_school_course_student
@@ -255,6 +274,11 @@ msgid "Courses"
 msgstr "Cursos"
 
 #. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+msgid "Create Exam"
+msgstr "Crear examen"
+
+#. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__create_uid
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__create_uid
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__create_uid
@@ -286,11 +310,13 @@ msgstr "Fecha de creación"
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.career_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_form_view
 msgid "Data"
 msgstr "Datos"
 
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
 msgid "Dates"
 msgstr "Fechas"
 
@@ -319,14 +345,29 @@ msgstr "Nombre a mostrar"
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_type_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_form_view
 msgid "Event Time Range"
 msgstr "Rango de horas del evento"
 
 #. module: climbing_gym_school
 #: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_exam
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__exam_id
+#: model:ir.ui.menu,name:climbing_gym_school.exam
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_search_view
 msgid "Exam"
 msgstr "Examen"
+
+#. module: climbing_gym_school
+#: code:addons/climbing_gym_school/models/course.py:418
+#, python-format
+msgid "Exam - %s"
+msgstr "Examen - %s"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__exam_students_count
+msgid "Exam Students Count"
+msgstr "Conteo de alumnos en el examen"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__exam_date
@@ -334,9 +375,36 @@ msgid "Exam date"
 msgstr "Fecha examen"
 
 #. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__organizer_id
+msgid "Exam organizer"
+msgstr "Organizador del examen"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_res_partner__climbing_gym_school_exam_student_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_res_users__climbing_gym_school_exam_student_ids
+msgid "Exam student registration"
+msgstr "Registro de estudiantes al examen"
+
+#. module: climbing_gym_school
 #: model:ir.model,name:climbing_gym_school.model_climbing_gym_school_exam_student
 msgid "Exam student result"
 msgstr "Resultados del examen"
+
+#. module: climbing_gym_school
+#: model:ir.actions.act_window,name:climbing_gym_school.exam_student_list_action
+msgid "Exam students"
+msgstr "Estudiantes en el examen"
+
+#. module: climbing_gym_school
+#: model:ir.actions.act_window,name:climbing_gym_school.exam_list_action
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+msgid "Exams"
+msgstr "Exámenes"
+
+#. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__failed_students_ids
+msgid "Failed students"
+msgstr "Alumnos reprobados"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_career__message_follower_ids
@@ -376,6 +444,8 @@ msgstr "Nota"
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_search_view
 msgid "Group By"
 msgstr "Agrupar por"
 
@@ -552,6 +622,8 @@ msgstr "Nueva cantidad a mano"
 #. module: climbing_gym_school
 #: model_terms:ir.actions.act_window,help:climbing_gym_school.course_list_action
 #: model_terms:ir.actions.act_window,help:climbing_gym_school.course_student_list_action
+#: model_terms:ir.actions.act_window,help:climbing_gym_school.exam_list_action
+#: model_terms:ir.actions.act_window,help:climbing_gym_school.exam_student_list_action
 msgid "No records yet!"
 msgstr "Sin registros aún!"
 
@@ -621,6 +693,11 @@ msgid "Observations"
 msgstr "Observaciones"
 
 #. module: climbing_gym_school
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
+msgid "Organizer"
+msgstr "Organizador"
+
+#. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
 msgid "POS Orders"
 msgstr "Órdenes del PDV"
@@ -643,6 +720,7 @@ msgstr "Pendiente"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__pending_course_students_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__pending_students_ids
 msgid "Pending students"
 msgstr "Pendientes"
 
@@ -693,6 +771,7 @@ msgstr "Fin de inscripción"
 
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_form_view
 msgid "Reject"
 msgstr "Rechazar"
 
@@ -705,6 +784,8 @@ msgstr "Rechazado"
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_form_view
 msgid "Revive"
 msgstr "Revivir"
 
@@ -746,6 +827,11 @@ msgid "Sold spots though POS"
 msgstr "Total ventas a través del PDV"
 
 #. module: climbing_gym_school
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__sold_spots_so_qty
+msgid "Sold spots though Sale Order"
+msgstr "Lugares vendidos por medio de órdenes de venta"
+
+#. module: climbing_gym_school
 #: code:addons/climbing_gym_school/controllers/portal_course.py:47
 #, python-format
 msgid "Stage"
@@ -760,14 +846,15 @@ msgstr "Estado"
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__state
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_student_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_student_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.portal_my_courses
 msgid "Status"
 msgstr "Estado"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course_student__partner_id
-#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__organizer_id
-#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__student_id
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam_student__partner_id
 msgid "Student"
 msgstr "Estudiante"
 
@@ -778,7 +865,9 @@ msgstr "Registro de estudiante en el curso"
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__course_students_ids
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__exam_students_ids
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
 msgid "Students"
 msgstr "Estudiantes"
 
@@ -799,6 +888,7 @@ msgstr "Esta cantidad está expresada en la unidad de medida predeterminada del 
 
 #. module: climbing_gym_school
 #: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_course__date_tz
+#: model:ir.model.fields,field_description:climbing_gym_school.field_climbing_gym_school_exam__date_tz
 msgid "Timezone"
 msgstr "Zona horaria"
 
@@ -846,6 +936,7 @@ msgstr "Contador de variantes"
 
 #. module: climbing_gym_school
 #: model_terms:ir.ui.view,arch_db:climbing_gym_school.course_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym_school.exam_form_view
 msgid "Variants"
 msgstr "Variante"
 

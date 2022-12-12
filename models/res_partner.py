@@ -13,5 +13,8 @@ class ResPartnerClimbingSchool(models.Model):
 
     climbing_gym_school_course_student = fields.One2many(
         'climbing_gym_school.course_student', inverse_name='partner_id', string='Course student registration',
-        readonly=False, track_visibility=False)
+        readonly=True, track_visibility=False)
 
+    climbing_gym_school_exam_student_ids = fields.One2many(
+        'climbing_gym_school.exam_student', inverse_name='partner_id', string='Exam student registration',
+        readonly=True, track_visibility=False)

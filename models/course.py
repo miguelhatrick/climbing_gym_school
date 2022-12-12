@@ -8,7 +8,7 @@ from typing import List
 import pytz
 
 import odoo
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -52,6 +52,8 @@ class Course(models.Model):
     course_students_ids = fields.One2many('climbing_gym_school.course_student', inverse_name='course_id',
                                           string='Students', readonly=True)
 
+    course_students_count = fields.Integer(compute='_compute_course_students_count')
+
     accepted_course_students_ids = fields.One2many('climbing_gym_school.course_student', string='Accepted students',
                                                    compute='_calculate_accepted_students_ids', readonly=True)
 
@@ -79,7 +81,7 @@ class Course(models.Model):
                                     compute='_calculate_sold_qty')
 
     sold_spots_so_qty = fields.Integer(string="Sold spots though Sale Order", readonly=True,
-                                        compute='_calculate_sold_so_qty')
+                                       compute='_calculate_sold_so_qty')
 
     sold_spots_pos_qty = fields.Integer(string="Sold spots though POS", readonly=True,
                                         compute='_calculate_sold_pos_qty')
@@ -93,6 +95,8 @@ class Course(models.Model):
     dummy_counter = fields.Integer(string="used to trigger writes")
 
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
+
+    course_exam_count = fields.Integer(compute='_compute_course_exam_count')
 
     def _compute_website_url(self):
         for blog_post in self:
@@ -162,14 +166,6 @@ class Course(models.Model):
                 raise ValidationError('Registration end date must be AFTER registration start date')
             pass
 
-    # @api.constrains('product_product_ids')
-    # def _data_check_date(self):
-    #    for _map in self:
-    #        if len(_map.product_product_ids) < 1:
-    #            raise ValidationError('A course must have related products')
-    #        else:
-    #            pass
-
     def _generate_name(self):
         for _map in self:
             _map.name = "COURSE-%s" % (_map.id if _map.id else '')
@@ -227,7 +223,8 @@ class Course(models.Model):
             ])
 
             # Calculate qty
-            _c.sold_spots_so_qty = sum(map(lambda x: int(x.product_uom_qty) if x.order_id.state in _filter else 0, _lines))
+            _c.sold_spots_so_qty = sum(
+                map(lambda x: int(x.product_uom_qty) if x.order_id.state in _filter else 0, _lines))
 
     def _calculate_sold_pos_qty(self):
         """
@@ -281,11 +278,11 @@ class Course(models.Model):
     def _tz_get(self):
         return [(x, x) for x in pytz.all_timezones]
 
-    def is_student_registered(self, partner_id):
+    def find_registration(self, partner_id):
         """
         Control if a partner is registered in the course
         :param partner_id: res.partner
-        :return: course_student
+        :return: CourseStudent
         """
         register = [d for d in self.course_students_ids if d.partner_id == partner_id]
 
@@ -304,11 +301,8 @@ class Course(models.Model):
 
         super(Course, self).browse(self.id)._update_product_availability()
 
-
     def _update_product_availability(self):
-        """
-        Updates quantities of the products linked to this course
-        """
+        """        Updates quantities of the products linked to this course"""
 
         # Available is calculated considering POS and SO sales.
         _available = self.available_spots_qty
@@ -388,7 +382,6 @@ class Course(models.Model):
 
         return result
 
-
     def cron_update_course_status(self):
         _courses_ids = self.sudo().env['climbing_gym_school.course'].search([
             ('state', '=', 'active')
@@ -402,3 +395,82 @@ class Course(models.Model):
 
             _course_id.update_product_availability()
 
+    def action_create_exam(self):
+        exam_id = self.create_exam()
+        return self.action_open_form_course_exam(exam_id)
+
+    def create_exam(self):
+        """Creates a new exam based on this course and returns it"""
+
+        _exam = self.env['climbing_gym_school.exam']
+        _exam_student = self.env['climbing_gym_school.exam_student']
+
+        _exam_ids = _exam.create({
+            'description': _('Exam - %s') % self.description,
+            'obs': self.obs,
+            'exam_date': self.course_date,
+            'date_tz': self.date_tz,
+            'organizer_id': self.organizer_id.id,
+            'course_id': self.id,
+            'state': 'pending',
+        })
+
+        for course_student in self.accepted_course_students_ids:
+            _exam = _exam_student.create({
+                'obs': self.obs,
+                'grade': 0,
+                'partner_id': course_student.partner_id.id,
+                'exam_id': _exam_ids.id,
+                'course_id': self.id,
+                'course_student_id': course_student.id,
+                'course_type_id': self.course_type_id.id,
+                'state': 'pending',
+            })
+
+        return _exam_ids
+
+    @api.multi
+    def _compute_course_students_count(self):
+        for record in self:
+            record.course_students_count = self.env['climbing_gym_school.course_student'].search_count(
+                [('course_id', '=', self.id)])
+
+    def action_open_view_course_students(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Students',
+            'view_mode': 'tree,form',
+            'res_model': 'climbing_gym_school.course_student',
+            'domain': [('course_id', '=', self.id)],
+            # 'context': "{'create': False}"
+        }
+
+    @api.multi
+    def _compute_course_exam_count(self):
+        for record in self:
+            record.course_exam_count = self.env['climbing_gym_school.exam'].search_count(
+                [('course_id', '=', self.id)])
+
+    def action_open_view_course_exam(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Exams',
+            'view_mode': 'tree,form',
+            'res_model': 'climbing_gym_school.exam',
+            'domain': [('course_id', '=', self.id)],
+            # 'context': "{'create': False}"
+        }
+
+    def action_open_form_course_exam(self, exam):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Exam',
+            'view_mode': 'form',
+            'res_model': 'climbing_gym_school.exam',
+            'res_id': exam.id,
+            # 'domain': [('course_id', '=', self.id)],
+            # 'context': "{'create': False}"
+        }

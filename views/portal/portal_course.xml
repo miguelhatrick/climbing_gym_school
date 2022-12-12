@@ -57,7 +57,7 @@
                             </td>
 
                             <td class="text-right">
-                                <t t-set="registration" t-value="course.is_student_registered(partner)"/>
+                                <t t-set="registration" t-value="course.find_registration(partner)"/>
                                 <t t-if="course.state == 'close'">
                                     Registration closed
                                 </t>

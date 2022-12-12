@@ -70,7 +70,7 @@ class CourseStudent(models.Model):
         if self.course_id is None:
             pass
 
-        if self.course_id.is_student_registered(self.partner_id) != self:
+        if self.course_id.find_registration(self.partner_id) != self:
             raise ValidationError('Can\'t register twice for the same course')
 
         pass

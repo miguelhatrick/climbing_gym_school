@@ -31,6 +31,9 @@
         'views/course.xml',
         'views/course_student.xml',
         'views/course_type.xml',
+        'views/exam.xml',
+        'views/exam_student.xml',
+
         'views/menu.xml',
         'views/res_partner.xml',
 
